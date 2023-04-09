@@ -1,0 +1,39 @@
+name: Ping
+env:
+  REPO_OWNER: harshitgupta412
+  REPO_NAME: temp-github-action
+  GITHUB_TOKEN: ${{ secrets.TOKEN }}
+on:
+  repository_dispatch:
+    types: [webhook]
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content to github runner
+
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7.7' # install the python version needed
+          
+      - name: install python packages # change here
+        run: |
+          python -m pip install --upgrade pip 
+          
+      - name: execute py script # run sj-gobierno.py to get the latest data
+        run: python a.py
+          
+      - name: commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git commit -m "update data" -a
+          
+      - name: push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main  
