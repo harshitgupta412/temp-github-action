@@ -1,4 +1,4 @@
-name: Ping
+name: Webhook
 env:
   REPO_OWNER: harshitgupta412
   REPO_NAME: temp-github-action
@@ -16,7 +16,7 @@ jobs:
       - name: setup python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.7.7' # install the python version needed
+          python-version: '3.9.16' # install the python version needed
           
       - name: install python packages # change here
         run: |
