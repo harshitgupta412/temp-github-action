@@ -31,7 +31,7 @@ jobs:
           global: true
           name: 'Harshit Gupta'
           email: 'mail4harshit1@gmail.com'
-          actor: 'github action'
+          actor: 'harshitgupta412'
           token: '${{ secrets.GITHUB_TOKEN }}'
 
       - name: commit files
