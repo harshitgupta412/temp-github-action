@@ -7,7 +7,7 @@ on:
   repository_dispatch:
     types: [webhook]
 jobs:
-  ping:
+  webhook:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo content
@@ -23,17 +23,10 @@ jobs:
           python -m pip install --upgrade pip 
           
       - name: execute py script # run sj-gobierno.py to get the latest data
-        run: python a.py
+        run: python a.py ${{ github.event.client_payload.command }}
           
       - name: commit files
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
           git add -A
-          git commit -m "update data" -a
-          
-      - name: push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main  
+          git commit -m "update data" -a 
+          git push
