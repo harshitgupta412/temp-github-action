@@ -36,8 +36,6 @@ jobs:
 
       - name: commit files
         run: |
-          git config --local user.email "mail4harshit1@gmail.com"
-          git config --local user.name "Harshit Gupta"
           git add -A
           git commit -m "update data" -a 
           git push
