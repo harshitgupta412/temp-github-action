@@ -39,4 +39,5 @@ jobs:
           git add -A
           git commit -m "update data" -a 
           git config --list
+          git remote set-url origin ssh://git@github.com/harshitgupta412/temp-github-action.git
           git push
