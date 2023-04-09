@@ -38,4 +38,5 @@ jobs:
         run: |
           git add -A
           git commit -m "update data" -a 
+          git config --list
           git push
