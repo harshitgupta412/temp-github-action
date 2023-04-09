@@ -25,14 +25,16 @@ jobs:
       - name: execute py script # run sj-gobierno.py to get the latest data
         run: python a.py ${{ github.event.client_payload.command }}
           
-      - name: commit files
-        uses: oleksiyrudenko/gha-git-credentials@v2.1.1
+      - name: setup git credentials
+        uses: oleksiyrudenko/gha-git-credentials@v2-latest
         with:
           global: true
           name: 'Harshit Gupta'
           email: 'mail4harshit1@gmail.com'
           actor: 'github action'
           token: '${{ secrets.GITHUB_TOKEN }}'
+
+      - name: commit files
         run: |
           git config --local user.email "mail4harshit1@gmail.com"
           git config --local user.name "Harshit Gupta"
