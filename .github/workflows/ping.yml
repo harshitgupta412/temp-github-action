@@ -6,6 +6,13 @@ env:
 on:
   repository_dispatch:
     types: [webhook]
+    
+  workflow_dispatch:
+    inputs:
+      command:
+        description: "Command"
+        required: true
+        type: string
 jobs:
   webhook:
     runs-on: ubuntu-latest
@@ -23,16 +30,9 @@ jobs:
           python -m pip install --upgrade pip 
           
       - name: execute py script # run sj-gobierno.py to get the latest data
-        run: python a.py ${{ github.event.client_payload.command }}
-          
-      - name: setup git credentials
-        uses: oleksiyrudenko/gha-git-credentials@v2-latest
-        with:
-          global: true
-          name: 'Harshit Gupta'
-          email: 'mail4harshit1@gmail.com'
-          actor: 'harshitgupta412'
-          token: '${{ secrets.GITHUB_TOKEN }}'
+        run: |
+          echo ${{ github.event_name }}      
+          python a.py ${{ github.event.client_payload.command }}
 
       - name: commit files
         run: |
