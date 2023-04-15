@@ -34,6 +34,14 @@ jobs:
           echo ${{ github.event_name }}      
           python a.py ${{ github.event.client_payload.command }}
 
+      - name: setup git credentials
+        uses: oleksiyrudenko/gha-git-credentials@v2-latest
+        with:
+          name: 'Github Action'
+          email: 'action@github.com'
+          actor: 'github-action'
+          token: '${{ secrets.GITHUB_TOKEN }}'
+
       - name: commit files
         run: |
           git add -A
