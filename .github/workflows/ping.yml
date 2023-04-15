@@ -28,11 +28,12 @@ jobs:
       - name: install python packages # change here
         run: |
           python -m pip install --upgrade pip 
-          c='addfs'
+          c=1
           
       - name: execute py script # run sj-gobierno.py to get the latest data
         run: |
-          echo '${{ github.event_name }}' "$c"   
+          d=2
+          echo '${{ github.event_name }}' $c $d
           python a.py ${{ github.event.client_payload.command }}
 
       - name: setup git credentials
