@@ -12,7 +12,7 @@ on:
       command:
         description: "Command"
         required: true
-        type: string
+        type: boolean
 jobs:
   webhook:
     runs-on: ubuntu-latest
@@ -33,7 +33,10 @@ jobs:
       - name: execute py script # run sj-gobierno.py to get the latest data
         run: |
           d=2
-          echo '${{ github.event_name }}' $c $d
+          echo '${{ github.event_name }}' $c $d ${{ inputs.command }}
+          if [[ ${{ inputs.command }} == 'true' ]]; then
+            echo abnc
+          fi
           python a.py ${{ github.event.client_payload.command }}
 
       - name: setup git credentials
