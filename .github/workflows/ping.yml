@@ -13,7 +13,16 @@ on:
         description: "Command"
         required: true
         type: boolean
+      id:
+        description: 'run identifier'
+        required: false
 jobs:
+  id:
+    name: Workflow ID Provider
+    runs-on: ubuntu-latest
+    steps:
+      - name: ${{github.event.inputs.id}}
+        run: echo run identifier ${{ inputs.id }}
   webhook:
     runs-on: ubuntu-latest
     steps:
