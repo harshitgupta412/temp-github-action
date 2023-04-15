@@ -17,15 +17,12 @@ on:
         description: 'run identifier'
         required: false
 jobs:
-  id:
-    name: Workflow ID Provider
+  webhook:
     runs-on: ubuntu-latest
     steps:
       - name: ${{github.event.inputs.id}}
         run: echo run identifier ${{ inputs.id }}
-  webhook:
-    runs-on: ubuntu-latest
-    steps:
+
       - name: checkout repo content
         uses: actions/checkout@v2 # checkout the repository content to github runner
 
