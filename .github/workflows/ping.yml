@@ -39,7 +39,7 @@ jobs:
       - name: execute py script # run sj-gobierno.py to get the latest data
         run: |
           d=2
-          echo '${{ github.event_name }}' $c $d ${{ github.event.inputs.command }}
+          echo '${{ github.event.event_name }}' $c $d ${{ github.event.inputs.command }}
           if [[ '${{ github.event.inputs.command }}' == 'true' ]]; then
             echo abnc
           fi
